@@ -14,4 +14,9 @@ public class SubtractTwoIntegers extends TestCase {
         assertTrue(x - y == 1);
     }
 
+
+    @Override
+    protected void tearDown() {
+        System.out.println("XXXX");
+    }
 }

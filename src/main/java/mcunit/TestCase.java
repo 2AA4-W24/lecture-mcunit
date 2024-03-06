@@ -3,19 +3,27 @@ package mcunit;
 public abstract class TestCase {
 
 
-    public final void run() {
-        System.out.println("# " + this.getClass().getCanonicalName());
+    public final TestResult run() {
+        TestResult result = new TestResult(this.getClass().getCanonicalName());
         try {
+            setUp();
             test();
-            System.out.println("PASSED");
+            result.record(STATUS.PASSED);
         } catch (AssertionError ae) {
-            System.out.println("FAILED");
+            result.record(STATUS.FAILED);
         } catch (Exception e) {
-            System.out.println("ERROR");
+            result.record(STATUS.ERRORED);
+        } finally {
+            tearDown();
         }
+        return result;
     }
 
     abstract protected void test();
+
+    protected void setUp() { }
+
+    protected void tearDown() {}
 
 
 }

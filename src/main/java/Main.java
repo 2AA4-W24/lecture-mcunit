@@ -1,6 +1,7 @@
 import static mcunit.Assertions.*;
 
 import mcunit.TestCase;
+import mcunit.TestReport;
 import tests.AddTwoIntegers;
 import tests.SubtractTwoIntegers;
 import tests.ThrowAnException;
@@ -11,17 +12,21 @@ public class Main {
         int x = 1;
         int y = 1;
 
+        TestReport report = new TestReport();
+
         // passed
         TestCase t1 = new AddTwoIntegers();
-        t1.run();
+        report.collect(t1.run());
 
         //failed
         TestCase t2 = new SubtractTwoIntegers();
-        t2.run();
+        report.collect(t2.run());
 
         // error
         TestCase t3 = new ThrowAnException();
-        t3.run();
+        report.collect(t3.run());
+
+        System.out.println(report);
 
     }
 
