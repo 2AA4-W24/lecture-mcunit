@@ -1,12 +1,9 @@
 package mcunit;
 
 public class Assertions {
-
-
     public static void assertTrue(boolean condition) {
-        if(!condition) {
+        if (!condition)
             throw new AssertionError();
-        }
     }
 
     public static void assertFalse(boolean condition) {
@@ -17,7 +14,7 @@ public class Assertions {
         assertTrue(left.equals(right));
     }
 
-
-
-
+    public static void assertNotEquals(Object left, Object right) {
+        assertFalse(left.equals(right));
+    }
 }

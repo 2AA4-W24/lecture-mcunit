@@ -1,18 +1,12 @@
 package mcunit;
 
 public enum STATUS {
-    PASSED('X'),
-    FAILED(' '),
-    ERRORED('#');
+    PASSED('X'), FAILED(' '), ERRORED('!');
 
-    private char symbol;
+    private final char symbol;
 
-    STATUS(char symbol) {
-        this.symbol = symbol;
-    }
+    private STATUS(char s) { this.symbol = s; }
 
     @Override
-    public String toString() {
-        return "" + symbol;
-    }
+    public String toString() { return "[" + symbol + ']';}
 }

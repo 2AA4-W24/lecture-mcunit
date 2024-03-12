@@ -1,22 +1,25 @@
 package mcunit;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class TestReport {
 
     private final List<TestResult> results = new ArrayList<>();
+    private final Map<STATUS, Integer> counter = new HashMap<>();
 
-    public void collect(TestResult res) {
-        this.results.add(res);
+    public void collect(TestResult result) {
+        this.results.add(result);
+        Integer count = counter.getOrDefault(result.status(),0) + 1;
+        this.counter.put(result.status(), count);
     }
 
     @Override
     public String toString() {
-        StringBuffer buff = new StringBuffer();
-        for(TestResult r: results) {
-            buff.append(r.toString()).append("\n");
-        }
-        return buff.toString();
+        String details = results.stream()
+                .map(TestResult::toString)
+                .collect(Collectors.joining("\n"));
+        return details + "\nSummary: " + counter.toString();
     }
+
 }

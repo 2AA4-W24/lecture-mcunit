@@ -3,20 +3,23 @@ package mcunit;
 public class TestResult {
 
     private final String testName;
-    private STATUS testStatus;
+    private STATUS status;
 
-    public TestResult(String testName) {
-        this.testName = testName;
+    public TestResult(String name) {
+        this.testName = name;
     }
 
-    public void record(STATUS status) {
-        this.testStatus = status;
+    public void record(STATUS status){
+        this.status = status;
+    }
+
+    public STATUS status() {
+        return this.status;
     }
 
     @Override
     public String toString() {
-        return testName + ": " + testStatus;
+        return "# " + status + " " + testName;
     }
-
 
 }
