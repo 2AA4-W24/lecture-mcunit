@@ -49,9 +49,10 @@ public final class TestCase implements Test {
 
     private void runSetUp(Object context)
             throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-        if(getMethodByName(SETUP).isPresent()) {
-            Method setup = getMethodByName(SETUP).get();
-            setup.invoke(context);
+        for(Method candidate: klass.getMethods()) {
+            if (candidate.isAnnotationPresent(mcunit.tags.Before.class)) {
+                candidate.invoke(context);
+            }
         }
     }
 

@@ -1,4 +1,5 @@
 import mcunit.Test;
+import mcunit.TestFactory;
 import mcunit.TestReport;
 import tests.IntegerTests;
 
@@ -9,7 +10,8 @@ public class Main {
         System.out.println("# 2AA4 - McUnit Demo");
 
         TestReport report = new TestReport();
-        Test integerTests = new IntegerTests();
+        TestFactory factory= new TestFactory();
+        Test integerTests = factory.build(IntegerTests.class);
         integerTests.run(report);
         System.out.println(report);
     }
