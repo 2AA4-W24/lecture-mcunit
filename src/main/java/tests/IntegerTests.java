@@ -18,7 +18,7 @@ public class IntegerTests extends TestSuite {
         }
     }
 
-    int x, y;
+    private int x, y;
 
     public void setUp() {
         this.x = 1;
